@@ -4,19 +4,22 @@ import './ThirdNo.css';
 import { useNavigate } from 'react-router-dom';
 
 function ThirdNo() {
-  const [noButtonStyle, setNoButtonStyle] = useState(null);
+  const [noButtonStyle, setNoButtonStyle] = useState({}); // Initial style state
 
   const handleNoHover = () => {
-    // Generate random positions within the viewport
-    const randomTop = Math.random() * 80; // Limit within 80% of viewport height
-    const randomLeft = Math.random() * 80; // Limit within 80% of viewport width
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
 
-    // Update button position
+    // Calculate random positions ensuring the button stays within bounds
+    const randomTop = Math.random() * (viewportHeight - 100); // Leave space for button height
+    const randomLeft = Math.random() * (viewportWidth - 100); // Leave space for button width
+
     setNoButtonStyle({
       position: 'absolute',
-      top: `${randomTop}%`,
-      left: `${randomLeft}%`,
-      transform: 'translate(-50%, -50%)',
+      top: `${randomTop}px`,
+      left: `${randomLeft}px`,
+      transition: 'all 0.3s ease', // Smooth movement
     });
   };
 
@@ -41,7 +44,7 @@ function ThirdNo() {
         </button>
         <button
           className="response-button no-button"
-          style={noButtonStyle || {}}
+          style={noButtonStyle}
           onMouseEnter={handleNoHover}
         >
           No 😞

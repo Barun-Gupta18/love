@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import video5 from '../emoj6.mp4';
-import './FirstPage.css';
+import './ThirdNo.css';
 import { useNavigate } from 'react-router-dom';
 
 function ThirdNo() {
-  const [noButtonStyle, setNoButtonStyle] = useState(null); // Start with no inline styles
+  const [noButtonStyle, setNoButtonStyle] = useState(null);
 
   const handleNoHover = () => {
     // Generate random positions within the viewport
-    const randomTop = Math.random() * 90; // Between 0% and 90% of the viewport height
-    const randomLeft = Math.random() * 90; // Between 0% and 90% of the viewport width
+    const randomTop = Math.random() * 80; // Limit within 80% of viewport height
+    const randomLeft = Math.random() * 80; // Limit within 80% of viewport width
 
-    // Update the button's position
+    // Update button position
     setNoButtonStyle({
-      position: 'absolute', // Switch to absolute positioning
+      position: 'absolute',
       top: `${randomTop}%`,
       left: `${randomLeft}%`,
       transform: 'translate(-50%, -50%)',
@@ -22,9 +22,9 @@ function ThirdNo() {
 
   const navigate = useNavigate();
 
-  async function FinallyYes() {
+  const FinallyYes = () => {
     navigate('/FinallyYes');
-  }
+  };
 
   return (
     <div className="app-wrapper">
@@ -34,7 +34,6 @@ function ThirdNo() {
           Your browser does not support the video tag.
         </video>
       </div>
-      {/* Text moved outside the container */}
       <h3 className="question-outside">Baby Man jao na! Kitna bhav Khaogi 😩😭</h3>
       <div className="button-container">
         <button className="response-button yes-button" onClick={FinallyYes}>
@@ -42,7 +41,7 @@ function ThirdNo() {
         </button>
         <button
           className="response-button no-button"
-          style={noButtonStyle || {}} // Apply inline styles only after hover
+          style={noButtonStyle || {}}
           onMouseEnter={handleNoHover}
         >
           No 😞
